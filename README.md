@@ -1,6 +1,6 @@
 # ActsAsMappable
 
-TODO: Write a gem description
+Generate google map from ActiveRecord model.
 
 ## Installation
 
@@ -18,7 +18,19 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Add this line to your app/assets/javascripts/application.js
+
+    //= require acts_as_mappable
+
+Add this line to your model, if you need mappable.
+
+    acts_as_mappable
+
+acts_as_mappable options:
+
+    lat: This option is latitude column name. Default value is :latitude.
+    lng: This option is longitude column name. Default value is :longitude.
+    name: This option is place name column name. Default value is nil. This option is not required.
 
 ## Contributing
 
