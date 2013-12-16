@@ -1,29 +1,32 @@
 (function($, undefined) {
-    initToMap = function() {
-	var div = $("#map-canvas"),
-	lat = Number(div.data("lat")),
-	lng = Number(div.data("lng")),
-	latlng = new google.maps.LatLng(lat, lng);
-	var mapOptions = {
-	    mapTypeId: google.maps.MapTypeId.ROADMAP,
-	    center: latlng,
-	    zoom: 12
-	};
-	var map = new google.maps.Map(div[0], mapOptions);
-	var marker = new google.maps.Marker({
-	    map: map,
-	    position: latlng,
-	    title: div.prop("title")
-	});
-    };
+    actsAsMappable = {
+        apiKey: "<%= ActsAsMappable::Mappable::Config.api_key %>",
+	map: undefined,
+        initToMap: function() {
+	    var div = $("#map-canvas"),
+	    lat = Number(div.data("lat")),
+	    lng = Number(div.data("lng")),
+	    latlng = new google.maps.LatLng(lat, lng);
+	    var mapOptions = {
+	        mapTypeId: google.maps.MapTypeId.ROADMAP,
+		center: latlng,
+		zoom: 12
+	    };
+	    this.map = new google.maps.Map(div[0], mapOptions);
+	    var marker = new google.maps.Marker({
+	        map: map,
+		position: latlng,
+		title: div.prop("title")
+	    });
+	}
+    }
 
-    apiKey = "<%= ActsAsMappable::Mappable::Config.api_key %>";
     loadApi = function() {
 	var script = document.createElement("script");
 	script.type = "text/javascript";
-	src = "http://maps.googleapis.com/maps/api/js?sensor=false&callback=initToMap";
-	if (apiKey) {
-	    src = src + "&key=" + apiKey;
+	src = "http://maps.googleapis.com/maps/api/js?sensor=false&callback=actsAsMappable.initToMap";
+	if (actsAsMappable.apiKey !== "") {
+	    src = src + "&key=" + actsAsMappable.apiKey;
 	}
 	script.src = src;
 	document.body.appendChild(script);
