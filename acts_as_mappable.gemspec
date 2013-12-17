@@ -30,4 +30,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "capybara", "~> 2.2"
   spec.add_development_dependency "guard-rspec"
   spec.add_development_dependency "simplecov"
+  # spec.add_development_dependency "jasminerice" 0.1.0がgithubからしか取得できないため、Gemfileに記述
+  spec.add_development_dependency "therubyracer"
+  spec.add_development_dependency "jquery-rails"
 end

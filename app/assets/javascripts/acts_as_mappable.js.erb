@@ -2,9 +2,13 @@
     actsAsMappable = {
         apiKey: "<%= ActsAsMappable::Mappable::Config.api_key %>",
 	map: undefined,
+	marker: undefined,
         initToMap: function() {
-	    var div = $("#map-canvas"),
-	    lat = Number(div.data("lat")),
+	    var div = $("#map-canvas");
+	    if (div.length === 0) {
+	        return;
+	    }
+	    var lat = Number(div.data("lat")),
 	    lng = Number(div.data("lng")),
 	    latlng = new google.maps.LatLng(lat, lng);
 	    var mapOptions = {
@@ -13,24 +17,23 @@
 		zoom: 12
 	    };
 	    this.map = new google.maps.Map(div[0], mapOptions);
-	    var marker = new google.maps.Marker({
-	        map: map,
+	    this.marker = new google.maps.Marker({
+	        map: this.map,
 		position: latlng,
 		title: div.prop("title")
 	    });
+	},
+	loadApi: function() {
+	    var script = document.createElement("script");
+	    script.type = "text/javascript";
+	    src = "http://maps.googleapis.com/maps/api/js?sensor=false&callback=actsAsMappable.initToMap";
+	    if (actsAsMappable.apiKey !== "") {
+	        src = src + "&key=" + actsAsMappable.apiKey;
+	    }
+	    script.src = src;
+	    document.body.appendChild(script);
 	}
     }
 
-    loadApi = function() {
-	var script = document.createElement("script");
-	script.type = "text/javascript";
-	src = "http://maps.googleapis.com/maps/api/js?sensor=false&callback=actsAsMappable.initToMap";
-	if (actsAsMappable.apiKey !== "") {
-	    src = src + "&key=" + actsAsMappable.apiKey;
-	}
-	script.src = src;
-	document.body.appendChild(script);
-    };
-
-    window.onload = loadApi;
+    $(document).ready(actsAsMappable.loadApi);
 })(jQuery);
