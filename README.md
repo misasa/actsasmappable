@@ -18,6 +18,10 @@ Or install it yourself as:
 
 ## Usage
 
+Generate configuration file and set your api key.
+
+    rails generate acts_as_mappable:config
+
 Add this line to your app/assets/javascripts/application.js
 
     //= require acts_as_mappable
@@ -25,6 +29,10 @@ Add this line to your app/assets/javascripts/application.js
 Add this line to your model, if you need mappable.
 
     acts_as_mappable
+
+Call to_map method on model that declared acts_as_mappable.
+
+    model.to_map
 
 acts_as_mappable options:
 
