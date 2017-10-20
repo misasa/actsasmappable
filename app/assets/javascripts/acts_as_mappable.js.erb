@@ -1,39 +1,52 @@
 (function($, undefined) {
     actsAsMappable = {
-        apiKey: "<%= ActsAsMappable::Mappable::Config.api_key %>",
 	map: undefined,
-	marker: undefined,
+	markersLayer: undefined,
         initToMap: function() {
 	    var div = $("#map-canvas");
 	    if (div.length === 0) {
 	        return;
 	    }
+
 	    var lat = Number(div.data("lat")),
-	    lng = Number(div.data("lng")),
-	    latlng = new google.maps.LatLng(lat, lng);
-	    var mapOptions = {
-	        mapTypeId: google.maps.MapTypeId.ROADMAP,
-		center: latlng,
-		zoom: 12
-	    };
-	    this.map = new google.maps.Map(div[0], mapOptions);
-	    this.marker = new google.maps.Marker({
-	        map: this.map,
-		position: latlng,
-		title: div.prop("title")
+		lng = Number(div.data("lng")),
+		zoom = 12;
+
+	    var map = actsAsMappable.map = L.map('map-canvas');
+	    map.on("moveend", actsAsMappable.setMarker);
+
+	    var markersLayer = actsAsMappable.markersLayer = L.layerGroup();
+	    markersLayer.addTo(map);
+
+	    map.setView([lat, lng], zoom);
+	    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
+		maxZoom: 18
+	    }).addTo(map);
+	},
+	setMarker: function() {
+	    var map = actsAsMappable.map,
+		layer = actsAsMappable.markersLayer,
+		bounds = map.getBounds();
+
+	    $.get("/places", { q: { longitude_gteq: bounds.getWest(), latitude_gteq: bounds.getSouth(), longitude_lteq: bounds.getEast(), latitude_lteq: bounds.getNorth() } }, null, "json").done(function(data) {
+		layer.clearLayers();
+		$.each(data, function(idx, place) {
+		    var marker = L.marker([place.latitude, place.longitude]);
+		    marker.id = place.id;
+		    marker.on("click", actsAsMappable.showPopup);
+		    marker.addTo(layer);
+		});
 	    });
 	},
-	loadApi: function() {
-	    var script = document.createElement("script");
-	    script.type = "text/javascript";
-	    src = "https://maps.googleapis.com/maps/api/js?sensor=false&callback=actsAsMappable.initToMap";
-	    if (actsAsMappable.apiKey !== "") {
-	        src = src + "&key=" + actsAsMappable.apiKey;
-	    }
-	    script.src = src;
-	    document.body.appendChild(script);
+	showPopup: function() {
+	    var marker = this;
+	    $.get("/places/" + marker.id + "/specimens", {}, null, "json").done(function(specimens) {
+		var names = $.map(specimens, function (specimen) { return '<a href=/specimens/' + specimen.id + '>' + specimen.name + '</a>'; });
+		marker.bindPopup(names.join(", ")).openPopup();
+	    });
 	}
     }
 
-    $(document).ready(actsAsMappable.loadApi);
+    $(document).ready(actsAsMappable.initToMap);
 })(jQuery);

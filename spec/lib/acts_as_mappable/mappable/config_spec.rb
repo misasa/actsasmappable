@@ -5,10 +5,6 @@ describe ActsAsMappable::Mappable::Config do
   let(:klass) { ActsAsMappable::Mappable::Config }
 
   describe "class attributes" do
-    describe ".api_key" do
-      it { expect(klass).to be_respond_to :api_key }
-      it { expect(klass).to be_respond_to :api_key= }
-    end
     describe ".width" do
       it { expect(klass).to be_respond_to :width }
       it { expect(klass).to be_respond_to :width= }
