@@ -1,7 +1,7 @@
 module ActsAsMappable
   module Mappable
     class Config
-      cattr_accessor :api_key, :width, :height
+      cattr_accessor :width, :height
       attr_reader :lat, :lng, :name
 
       def initialize(lat:, lng:, name: nil)
