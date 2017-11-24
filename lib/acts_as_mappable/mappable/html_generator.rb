@@ -5,10 +5,13 @@ module ActsAsMappable
 
       def generate(lat:, lng:, name: nil, width:, height:)
         style = "width: #{width}px; height: #{height}px;"
+        url_root = ENV['RAILS_RELATIVE_URL_ROOT'] || ""
+        url_root += "/" unless url_root.end_with?("/")
         options = {
           id: "map-canvas",
           "data-lat" => lat,
           "data-lng" => lng,
+          "data-url-root" => url_root,
           style: style
         }
         options[:title] = name if name

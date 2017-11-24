@@ -1,5 +1,6 @@
 (function($, undefined) {
     actsAsMappable = {
+	url_root: undefined,
 	map: undefined,
 	markersLayer: undefined,
         initToMap: function() {
@@ -7,6 +8,7 @@
 	    if (div.length === 0) {
 	        return;
 	    }
+	    actsAsMappable.url_root = div.data("url-root");
 
 	    var lat = Number(div.data("lat")),
 		lng = Number(div.data("lng")),
@@ -29,7 +31,7 @@
 		layer = actsAsMappable.markersLayer,
 		bounds = map.getBounds();
 
-	    $.get("/places", { q: { longitude_gteq: bounds.getWest(), latitude_gteq: bounds.getSouth(), longitude_lteq: bounds.getEast(), latitude_lteq: bounds.getNorth() } }, null, "json").done(function(data) {
+	    $.get(actsAsMappable.url_root + "places", { q: { longitude_gteq: bounds.getWest(), latitude_gteq: bounds.getSouth(), longitude_lteq: bounds.getEast(), latitude_lteq: bounds.getNorth() } }, null, "json").done(function(data) {
 		layer.clearLayers();
 		$.each(data, function(idx, place) {
 		    var marker = L.marker([place.latitude, place.longitude]);
@@ -41,8 +43,8 @@
 	},
 	showPopup: function() {
 	    var marker = this;
-	    $.get("/places/" + marker.id + "/specimens", {}, null, "json").done(function(specimens) {
-		var names = $.map(specimens, function (specimen) { return '<a href=/specimens/' + specimen.id + '>' + specimen.name + '</a>'; });
+	    $.get(actsAsMappable.url_root + "places/" + marker.id + "/specimens", {}, null, "json").done(function(specimens) {
+		var names = $.map(specimens, function (specimen) { return '<a href=' + actsAsMappable.url_root + 'specimens/' + specimen.id + '>' + specimen.name + '</a>'; });
 		marker.bindPopup(names.join(", ")).openPopup();
 	    });
 	}
