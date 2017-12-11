@@ -3,7 +3,7 @@ module ActsAsMappable
     module HtmlGenerator
       extend ActionView::Helpers::TagHelper
 
-      def generate(lat:, lng:, name: nil, width:, height:)
+      def generate(lat:, lng:, zoom: 12, name: nil, width:, height:)
         style = "width: #{width}px; height: #{height}px;"
         url_root = ENV['RAILS_RELATIVE_URL_ROOT'] || ""
         url_root += "/" unless url_root.end_with?("/")
@@ -11,6 +11,7 @@ module ActsAsMappable
           id: "map-canvas",
           "data-lat" => lat,
           "data-lng" => lng,
+          "data-zoom" => zoom,
           "data-url-root" => url_root,
           style: style
         }
