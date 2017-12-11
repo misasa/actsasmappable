@@ -12,7 +12,7 @@
 
 	    var lat = Number(div.data("lat")),
 		lng = Number(div.data("lng")),
-		zoom = 12;
+		zoom = Number(div.data("zoom"));
 
 	    var map = actsAsMappable.map = L.map('map-canvas');
 	    map.on("moveend", actsAsMappable.setMarker);
