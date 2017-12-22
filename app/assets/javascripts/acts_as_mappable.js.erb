@@ -31,7 +31,7 @@
 		layer = actsAsMappable.markersLayer,
 		bounds = map.getBounds();
 
-	    $.get(actsAsMappable.url_root + "places", { q: { longitude_gteq: bounds.getWest(), latitude_gteq: bounds.getSouth(), longitude_lteq: bounds.getEast(), latitude_lteq: bounds.getNorth() } }, null, "json").done(function(data) {
+	    $.get(actsAsMappable.url_root + "places", { per_page: 100000, q: { longitude_gteq: bounds.getWest(), latitude_gteq: bounds.getSouth(), longitude_lteq: bounds.getEast(), latitude_lteq: bounds.getNorth() } }, null, "json").done(function(data) {
 		layer.clearLayers();
 		$.each(data, function(idx, place) {
 		    var marker = L.marker([place.latitude, place.longitude]);
