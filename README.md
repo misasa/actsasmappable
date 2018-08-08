@@ -2,6 +2,10 @@
 
 Generate google map from ActiveRecord model.
 
+# Description
+
+Generate google map from ActiveRecord model.
+
 ## Installation
 
 Add this line to your application's Gemfile:
