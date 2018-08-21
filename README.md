@@ -4,7 +4,7 @@ This is a Rails plugin for adding the ability to generate map from ActiveRecord 
 
 # Description
 
-ActsAsMappable makes it easy to integrate a dynamic map in a Rails application. It can display geographical map tiles loaded from [OpenStreetMap][] and surface map tiles loaded from [Medusa][]. The included map viewer is [Leaflet][].
+ActsAsMappable makes it easy to integrate a dynamic map in a Rails application. It can display geographical map tiles loaded from [OpenStreetMap][]. The included map viewer is [Leaflet][].
 
 This is referred by [medusa](https://github.com/misasa/medusa "follow instruction").
 
