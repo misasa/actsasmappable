@@ -5,7 +5,7 @@ Generate google map from ActiveRecord model.
 # Description
 
 ActsAsMappable is a Rails plugin for adding the ability to generate map from ActiveRecord mode.
-This gem is referred by [medusa](https://github.com/misasa/medusa "follow instruction").
+This is referred by [medusa](https://github.com/misasa/medusa "follow instruction").
 
 ## Installation
 
