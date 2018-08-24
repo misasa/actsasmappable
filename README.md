@@ -1,6 +1,6 @@
 # ActsAsMappable
 
-This is a Rails plugin for adding the ability to generate map from ActiveRecord model.
+Generate a map from ActiveRecord model.
 
 # Description
 
