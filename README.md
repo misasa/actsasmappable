@@ -4,7 +4,7 @@ Generate a map from ActiveRecord model.
 
 # Description
 
-ActsAsMappable makes it easy to integrate a dynamic map in a Rails application. It can display geographical map tiles loaded from [OpenStreetMap][]. The included map viewer is [Leaflet][].
+Generate a map from ActiveRecord model. Integrate a dynamic map in a Rails application. It can display geographical map tiles loaded from [OpenStreetMap][]. The included map viewer is [Leaflet][].
 
 This is referred by [medusa](https://github.com/misasa/medusa "follow instruction").
 
