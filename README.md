@@ -1,17 +1,20 @@
-# ActsAsMappable
+# gem package -- ActsAsMappable
 
 Generate a map from ActiveRecord model.
 
 # Description
 
-Generate a map from ActiveRecord model. Integrate a dynamic map in a Rails application. It can display geographical map tiles loaded from [OpenStreetMap][]. The included map viewer is [Leaflet][].
+Generate a map from ActiveRecord model.  Integrate a dynamic map in a
+Rails application. It can display geographical map tiles loaded from
+[OpenStreetMap][]. The included map viewer is [Leaflet][].
 
-This is referred by [medusa](https://github.com/misasa/medusa "follow instruction").
+See
+[medusa](https://github.com/misasa/medusa "follow instruction")
+that refers to this package.
 
-[OpenStreetMap]: https://www.openstreetmap.org   "OpenStreetMap"
+[OpenStreetMap]: https://www.openstreetmap.org "OpenStreetMap"
 [leaflet]: https://leafletjs.com/ "Leaflet"
-[medusa]: https://github.com/misasa/medusa/        "Medusa"
-
+[medusa]: https://github.com/misasa/medusa/ "Medusa"
 
 ## Installation
 
