@@ -26,10 +26,6 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install acts_as_mappable
-
 ## Usage
 
 Generate configuration file and set your api key.
