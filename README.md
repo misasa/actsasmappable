@@ -1,4 +1,4 @@
-# gem package -- ActsAsMappable
+# gem package -- actsasmappable
 
 Generate a map from ActiveRecord model.
 
