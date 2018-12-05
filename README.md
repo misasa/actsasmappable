@@ -8,9 +8,7 @@ Generate a map from ActiveRecord model.  Integrate a dynamic map in a
 Rails application. It can display geographical map tiles loaded from
 [OpenStreetMap][]. The included map viewer is [Leaflet][].
 
-See
-[medusa](https://github.com/misasa/medusa "follow instruction")
-that refers to this package.
+See [rails project -- medusa](https://github.com/misasa/medusa) that refers to this package.
 
 [OpenStreetMap]: https://www.openstreetmap.org "OpenStreetMap"
 [leaflet]: https://leafletjs.com/ "Leaflet"
