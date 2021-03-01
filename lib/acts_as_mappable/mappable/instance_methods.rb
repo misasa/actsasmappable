@@ -6,7 +6,7 @@ module ActsAsMappable
         HtmlGenerator.generate(
           lat: send(config.lat),
           lng: send(config.lng),
-          name: try(config.name),
+          name: config.name && try(config.name),
           width: width || config.width,
           height: height || config.height
         )
